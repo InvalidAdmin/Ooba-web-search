@@ -20,7 +20,7 @@ def google_results(query):
 
     driver = webdriver.Chrome(service=service,options=options)
     query = urllib.parse.quote_plus(query)
-    url="https://www.google.com/search?hl=en&q="+query
+    url = f"https://www.google.com/search?hl=en&q={query}"
     driver.get(url)
     html = driver.find_element(By.CLASS_NAME, 'ULSxyf').text
     driver.quit()
@@ -40,8 +40,11 @@ def update_search_access(checkbox_value):
 def input_modifier(user_input, state):
     global search_access
     if search_access:
-        search_query = re.search(r'search\s+"([^"]+)"', user_input, re.IGNORECASE)
-        if search_query:
+        #search_query = re.search(r'search\s+"([^"]+)"', user_input, re.IGNORECASE)
+        #if search_query:
+        if search_query := re.search(
+            r'search\s+"([^"]+)"', user_input, re.IGNORECASE
+        ):
             query = search_query.group(1)
         elif user_input.lower().startswith("search"):
             query = user_input.replace("search", "").strip()
