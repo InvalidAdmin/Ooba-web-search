@@ -3,7 +3,7 @@ import modules.shared as shared
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
-import urllib
+import urllib.parse
 import re
 
 search_access = True
